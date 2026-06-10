@@ -2,9 +2,11 @@
   "name": "leidy-laura-portfolio",
   "private": true,
   "version": "1.0.0",
+  "packageManager": "pnpm@10.0.0",
   "main": "package.json",
   "license": "UNLICENSED",
   "scripts": {
+    "login": "sanity login",
     "dev": "sanity dev",
     "start": "sanity start",
     "build": "sanity build",
@@ -19,7 +21,7 @@
     "@sanity/vision": "^4.4.1",
     "react": "^19.1",
     "react-dom": "^19.1",
-    "sanity": "^4.4.1",
+    "sanity": "^5.31.1",
     "styled-components": "^6.1.18"
   },
   "devDependencies": {
