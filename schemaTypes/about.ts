@@ -5,6 +5,16 @@ export default defineType({
     name: 'about',
     title: 'About',
     type: 'document',
+    fieldsets: [
+        {
+            name: 'english',
+            title: 'English translations',
+            description:
+                'Optional. Anything left empty here falls back to the Spanish text above, so the ' +
+                'English site is never blank.',
+            options: { collapsible: true, collapsed: true },
+        },
+    ],
     fields: [
         defineField({
             name: 'profilePic',
@@ -60,6 +70,17 @@ export default defineType({
                             type: 'string',
                             description: 'Free text, e.g. "October 2026", "2025, 2026", "2022 —".',
                         }),
+                        // English versions. Optional — empty falls back to the Spanish text.
+                        defineField({
+                            name: 'roleEn',
+                            title: 'Role or award (English)',
+                            type: 'string',
+                        }),
+                        defineField({
+                            name: 'organisationEn',
+                            title: 'Organisation (English)',
+                            type: 'string',
+                        }),
                     ],
                     preview: {
                         select: { title: 'role', subtitle: 'organisation' },
@@ -101,11 +122,22 @@ export default defineType({
                     name: 'language',
                     fields: [
                         defineField({ name: 'language', title: 'Language', type: 'string' }),
+                        // English versions. Optional — empty falls back to the Spanish text.
+                        defineField({
+                            name: 'languageEn',
+                            title: 'Language (English)',
+                            type: 'string',
+                        }),
                         defineField({
                             name: 'level',
                             title: 'Level',
                             type: 'string',
                             description: 'e.g. "Native", "B1", "A1".',
+                        }),
+                        defineField({
+                            name: 'levelEn',
+                            title: 'Level (English)',
+                            type: 'string',
                         }),
                     ],
                     preview: { select: { title: 'language', subtitle: 'level' } },
@@ -152,6 +184,60 @@ export default defineType({
                     preview: { select: { title: 'label', subtitle: 'url' } },
                 }),
             ],
+        }),
+
+        // ---- English translations ----
+        // Parallel fields, NOT a change of shape on the Spanish ones. No
+        // migration needed: existing fields keep their data and their type,
+        // and everything here is optional. Empty -> the site shows the Spanish
+        // text on /en (decisions.md D3).
+        defineField({
+            name: 'availableFromEn',
+            title: 'Available from (English)',
+            type: 'string',
+            fieldset: 'english',
+        }),
+        defineField({
+            name: 'shortBioEn',
+            title: 'Short bio (English)',
+            type: 'text',
+            rows: 3,
+            fieldset: 'english',
+        }),
+        defineField({
+            name: 'descriptionEn',
+            title: 'Long bio (English)',
+            type: 'array',
+            of: [{ type: 'block' }],
+            fieldset: 'english',
+        }),
+        defineField({
+            name: 'runwaysLineEn',
+            title: 'Runways and exhibitions line (English)',
+            type: 'string',
+            fieldset: 'english',
+        }),
+        defineField({
+            name: 'expertiseEn',
+            title: 'Expertise (English)',
+            type: 'array',
+            of: [{ type: 'string' }],
+            options: { layout: 'tags' },
+            fieldset: 'english',
+        }),
+        defineField({
+            name: 'softwareEn',
+            title: 'Software (English)',
+            type: 'array',
+            of: [{ type: 'string' }],
+            options: { layout: 'tags' },
+            fieldset: 'english',
+        }),
+        defineField({
+            name: 'locationEn',
+            title: 'Based in (English)',
+            type: 'string',
+            fieldset: 'english',
         }),
     ],
     preview: {

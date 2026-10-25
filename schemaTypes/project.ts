@@ -5,6 +5,16 @@ export default defineType({
   name: 'project',
   title: 'Project',
   type: 'document',
+  fieldsets: [
+    {
+      name: 'english',
+      title: 'English translations',
+      description:
+        'Optional. Anything left empty here falls back to the Spanish text above, so the ' +
+        'English site is never blank.',
+      options: { collapsible: true, collapsed: true },
+    },
+  ],
   fields: [
     defineField({
       name: 'order',
@@ -146,6 +156,79 @@ export default defineType({
       title: 'Design Process',
       type: 'array',
       of: [{ type: 'block' }],
+    }),
+
+    // ---- English translations ----
+    // Parallel fields, NOT a change of shape on the Spanish ones. Nothing here
+    // needs a migration: the existing fields keep their data and their type,
+    // and every field below is optional. Empty -> the site shows the Spanish
+    // text on /en (decisions.md D3). See docs/sanity-proposal/04-i18n.md for
+    // why the internationalized-array plugin was rejected: it would have
+    // rewritten the shape of fields that already hold content, the same class
+    // of break that invalidated every gallery image in October 2026.
+    defineField({
+      name: 'titleEn',
+      title: 'Title (English)',
+      type: 'string',
+      fieldset: 'english',
+    }),
+    defineField({
+      name: 'subtitleEn',
+      title: 'Subtitle (English)',
+      type: 'string',
+      fieldset: 'english',
+    }),
+    defineField({
+      name: 'categoryEn',
+      title: 'Category (English)',
+      type: 'string',
+      fieldset: 'english',
+    }),
+    defineField({
+      name: 'contextEn',
+      title: 'Context (English)',
+      type: 'string',
+      fieldset: 'english',
+    }),
+    defineField({
+      name: 'nextStageEn',
+      title: 'Next stage (English)',
+      type: 'string',
+      fieldset: 'english',
+    }),
+    defineField({
+      name: 'roleEn',
+      title: 'Role (English)',
+      type: 'string',
+      fieldset: 'english',
+    }),
+    defineField({
+      name: 'creditsEn',
+      title: 'Credits (English)',
+      type: 'text',
+      rows: 2,
+      fieldset: 'english',
+    }),
+    defineField({
+      name: 'pullQuoteEn',
+      title: 'Pull quote (English)',
+      type: 'text',
+      rows: 2,
+      fieldset: 'english',
+    }),
+    defineField({
+      name: 'descriptionEn',
+      title: 'Description (English)',
+      type: 'array',
+      of: [{ type: 'block' }],
+      fieldset: 'english',
+    }),
+    defineField({
+      name: 'processEn',
+      title: 'Design Process (English)',
+      type: 'array',
+      of: [{ type: 'block' }],
+      fieldset: 'english',
     }),
   ],
 })

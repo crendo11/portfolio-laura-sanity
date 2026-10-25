@@ -37,4 +37,18 @@ export const imageFields = [
       'Optional. Shown under the photo in the full-screen viewer. Leave empty and the viewer ' +
       'shows no caption.',
   }),
+  defineField({
+    name: 'altEn',
+    title: 'Alternative text (English)',
+    type: 'string',
+    description: 'Optional. Empty falls back to the Spanish alt text above.',
+    validation: (Rule) =>
+      Rule.max(160).warning('Keep alt text under about 160 characters'),
+  }),
+  defineField({
+    name: 'captionEn',
+    title: 'Caption (English)',
+    type: 'string',
+    description: 'Optional. Empty falls back to the Spanish caption above.',
+  }),
 ]
